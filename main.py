@@ -39,6 +39,8 @@ def get_srt_time(tm_val):
 if __name__ == '__main__': 
     # test passed arguments
     # print('\n'.join(sys.argv))
+    
+    # Note : if you want debug with specific parameters, modify configurations.args field in launch.json file.
        
     ytsub_f_name = sys.argv[1]
     ytsub_f_title = ytsub_f_name.replace('.txt', '')
@@ -58,7 +60,8 @@ if __name__ == '__main__':
     content = ''
     
     for line in fytsub:
-        pattern = re.compile("^[0-9]+:[0-9]+$")
+        # this pattern matches with 01:02:03 or 02:03
+        pattern = re.compile("^([0-9]+:)?[0-9]+:[0-9]+$")
         if pattern.match(line):
             if last_tm_lno != 0:
                 # extract subtitle text from last time line to this line                
